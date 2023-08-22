@@ -5,19 +5,20 @@ namespace EventSourcingDemo.Domain;
 
 public abstract class BaseEntity
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
-    private readonly List<BaseEvent> _domainEvents = new();
+    private readonly List<IBaseEvent> _domainEvents = new();
+
 
     [NotMapped]
-    public IReadOnlyCollection<BaseEvent> DomainEvents => _domainEvents.AsReadOnly();
+    public IReadOnlyCollection<IBaseEvent> DomainEvents => _domainEvents.AsReadOnly();
 
-    public void AddDomainEvent(BaseEvent domainEvent)
+    public void AddDomainEvent(IBaseEvent domainEvent)
     {
         _domainEvents.Add(domainEvent);
     }
 
-    public void RemoveDomainEvent(BaseEvent domainEvent)
+    public void RemoveDomainEvent(IBaseEvent domainEvent)
     {
         _domainEvents.Remove(domainEvent);
     }

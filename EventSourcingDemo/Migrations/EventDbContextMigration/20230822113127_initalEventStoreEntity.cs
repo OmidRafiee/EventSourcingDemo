@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace EventSourcingDemo.Migrations.EventDbContextMigration
+namespace EventSourcingDemo.Migrations
 {
     /// <inheritdoc />
-    public partial class InialProduct : Migration
+    public partial class initalEventStoreEntity : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,13 +15,13 @@ namespace EventSourcingDemo.Migrations.EventDbContextMigration
                 name: "EventEntity",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Data = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CustomerIsin = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AggregateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     EntityName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Action = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Timestamp = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CustomerIsin = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Timestamp = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {

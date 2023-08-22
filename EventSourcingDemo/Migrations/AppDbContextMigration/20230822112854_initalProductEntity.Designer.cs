@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EventSourcingDemo.Migrations.AppDbContextMigration
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230821082113_InialProduct")]
-    partial class InialProduct
+    [Migration("20230822112854_initalProductEntity")]
+    partial class initalProductEntity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,11 +25,9 @@ namespace EventSourcingDemo.Migrations.AppDbContextMigration
 
             modelBuilder.Entity("EventSourcingDemo.Domain.ProductEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()

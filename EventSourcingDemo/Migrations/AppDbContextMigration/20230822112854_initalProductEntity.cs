@@ -5,7 +5,7 @@
 namespace EventSourcingDemo.Migrations.AppDbContextMigration
 {
     /// <inheritdoc />
-    public partial class InialProduct : Migration
+    public partial class initalProductEntity : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,8 +14,7 @@ namespace EventSourcingDemo.Migrations.AppDbContextMigration
                 name: "Products",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },

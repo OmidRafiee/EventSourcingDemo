@@ -32,5 +32,19 @@ public class ProductController : ControllerBase
 	{
 		var productId = await _mediator.Send(createProductCommand);
 		return Ok(productId);
-	} 
+	}
+
+    [HttpPost("Update")]
+    public async Task<IActionResult> Update(UpdateProductCommand updateProductCommand)
+    {
+        var productId = await _mediator.Send(updateProductCommand);
+        return Ok(productId);
+    }
+
+    [HttpPost("Remove")]
+    public async Task<IActionResult> Remove(RemoveProductCommand removeProductCommand)
+    {
+        var productId = await _mediator.Send(removeProductCommand);
+        return Ok(productId);
+    }
 }

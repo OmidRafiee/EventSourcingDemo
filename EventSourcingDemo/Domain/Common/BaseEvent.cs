@@ -2,6 +2,6 @@
 
 namespace EventSourcingDemo.Domain.Common;
 
-public abstract class BaseEvent : INotification
+public interface IBaseEvent : INotification
 {
 }

@@ -18,7 +18,7 @@ namespace EventSourcingDemo.Services
             _mediator = mediator;
         }
 
-        public async Task<IEnumerable<EventEntity>> GetEventsAsync()
+        public async Task<IEnumerable<Event>> GetEventsAsync()
         {
             return await _auditLogDbContext.EventEntity.ToListAsync();
         }
@@ -39,7 +39,7 @@ namespace EventSourcingDemo.Services
                             var productCreatedEvent = JsonSerializer.Deserialize<ProductCreatedEvent>(@event.EntityName);
 
                             // Send the event to the ProductCreatedEventHandler and set the IsReplay flag to true
-                            productCreatedEvent.IsReplay = true;
+                            //productCreatedEvent.IsReplay = true;
                             await _mediator.Publish(productCreatedEvent);
 
                             break;

@@ -21,13 +21,11 @@ namespace EventSourcingDemo.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("EventSourcingDemo.Domain.EventEntity", b =>
+            modelBuilder.Entity("EventSourcingDemo.Domain.StoreEventEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Action")
                         .IsRequired()
@@ -37,6 +35,10 @@ namespace EventSourcingDemo.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CustomerIsin")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Data")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

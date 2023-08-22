@@ -7,21 +7,16 @@ using MediatR;
 
 namespace EventSourcingDemo.Events
 {
-    public class ProductCreatedEvent : Event
+    public class ProductRemoveEvent : Event
     {
-        public ProductCreatedEvent(Guid id, string name, decimal price)
+        public ProductRemoveEvent(Guid id)
         {
             Id = id;
-            Name = name;
-            Price = price;
             AggregateId = id;
             EntityName= "Product";
         }
 
         public Guid Id { get; set; }
-        public string Name { get; private set; }
-        public decimal Price { get; private set; }
-
-
+   
     }
 }

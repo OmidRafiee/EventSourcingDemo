@@ -1,18 +1,19 @@
 using System;
 using EventSourcingDemo.Data;
 using EventSourcingDemo.Domain;
+using EventSourcingDemo.Domain.Common;
 using EventSourcingDemo.Events;
 using MediatR;
 
 namespace EventSourcingDemo.Commands
 {
-    public class CreateProductCommand : IRequest<int>
+    public class CreateProductCommand : IRequest<Guid>
     {
         public string Name { get; set; }
         public decimal Price { get; set; }
     }
 
-    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, int>
+    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Guid>
     {
         private readonly AppDbContext _dbContext;
         private readonly  IMediator _mediator;
@@ -23,29 +24,21 @@ namespace EventSourcingDemo.Commands
             _mediator = mediator;
         }
 
-        public async Task<int> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
             var product = new ProductEntity
             {
-                Name = request.Name,
+                Id = Guid.NewGuid(),
+                                Name = request.Name,
                 Price = request.Price
             };
+            
+            product.AddDomainEvent(new ProductCreatedEvent(product.Id,product.Name,product.Price));
 
             _dbContext.Products.Add(product);
             await _dbContext.SaveChangesAsync(cancellationToken);
 
-            // Reload the product to get the Id
-            await _dbContext.Entry(product).ReloadAsync(cancellationToken);
-
-            var productCreatedEvent = new ProductCreatedEvent
-            {
-                ProductId = product.Id,
-                Name = product.Name,
-                Price = product.Price
-            };
-
-            await _mediator.Publish(productCreatedEvent, cancellationToken);
-
+            
             return product.Id;
         }
     }

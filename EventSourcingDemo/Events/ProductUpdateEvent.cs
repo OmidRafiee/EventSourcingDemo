@@ -7,9 +7,9 @@ using MediatR;
 
 namespace EventSourcingDemo.Events
 {
-    public class ProductCreatedEvent : Event
+    public class ProductUpdateEvent : Event
     {
-        public ProductCreatedEvent(Guid id, string name, decimal price)
+        public ProductUpdateEvent(Guid id, string name, decimal price)
         {
             Id = id;
             Name = name;

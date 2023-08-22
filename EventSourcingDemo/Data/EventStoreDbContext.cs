@@ -8,5 +8,5 @@ public class EventStoreDbContext : DbContext
     {
     }
 
-    public DbSet<EventEntity> EventEntity { get; set; }
+    public DbSet<StoreEventEntity> EventEntity { get; set; }
 }
