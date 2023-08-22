@@ -43,7 +43,7 @@ namespace EventSourcingDemo.Commands
                 Price = request.Price,
             };
 
-            newProduct.AddDomainEvent(new ProductUpdateEvent(product.Id, product.Name, product.Price));
+            newProduct.AddDomainEvent(new ProductUpdatedEvent(product.Id, product.Name, product.Price));
 
             _dbContext.Products.Update(newProduct);
             await _dbContext.SaveChangesAsync(cancellationToken);

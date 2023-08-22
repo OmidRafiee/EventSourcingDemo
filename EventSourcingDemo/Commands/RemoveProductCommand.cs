@@ -34,7 +34,7 @@ namespace EventSourcingDemo.Commands
                 throw new ValidationException("product not found");
             }
             
-            product.AddDomainEvent(new ProductRemoveEvent(product.Id));
+            product.AddDomainEvent(new ProductRemovedEvent(product.Id));
 
             _dbContext.Products.Remove(product);
             await _dbContext.SaveChangesAsync(cancellationToken);

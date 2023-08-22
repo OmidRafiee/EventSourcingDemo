@@ -1,5 +1,6 @@
 ﻿using EventSourcingDemo.Data;
 using EventSourcingDemo.Domain;
+using EventSourcingDemo.Domain.Common;
 using MediatR;
 using Newtonsoft.Json;
 

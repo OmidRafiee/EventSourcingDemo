@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using EventSourcingDemo.Domain.Common;
+using MediatR;
 
 namespace EventSourcingDemo.Domain
 {

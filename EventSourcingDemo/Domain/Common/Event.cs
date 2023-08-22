@@ -1,13 +1,12 @@
-﻿using EventSourcingDemo.Domain.Common;
-using MediatR;
+﻿using MediatR;
 
-namespace EventSourcingDemo.Domain
+namespace EventSourcingDemo.Domain.Common
 {
     public class Event : IBaseEvent
     {
         public Event()
         {
-            Action = this.GetType().Name;
+            Action = GetType().Name;
         }
 
         public Guid AggregateId { get; set; }

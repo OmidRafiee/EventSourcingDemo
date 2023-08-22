@@ -1,6 +1,6 @@
 using System;
 using System.Text.Json;
-using EventSourcingDemo.Domain;
+using EventSourcingDemo.Domain.Common;
 using EventSourcingDemo.Events;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

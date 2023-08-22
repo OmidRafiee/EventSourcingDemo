@@ -1,7 +1,6 @@
 using System;
 using System.Text.Json;
 using EventSourcingDemo.Data;
-using EventSourcingDemo.Domain;
 using EventSourcingDemo.Domain.Common;
 using MediatR;
 
